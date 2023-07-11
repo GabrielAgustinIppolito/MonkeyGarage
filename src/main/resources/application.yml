@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: monkey_garage
+  datasource:
+    url: jdbc:mysqldb://localhost:3306/monkeygarage?createDatabaseIfNotExist=true&autoReconnect=true&useSLL=false
+    username: ${DB_USER}
+    password: ${DB_PASS}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      dialect: org.hibernate.dialect.MySQLDialect
+      format_sql: true
+      show-sql: true
+      open-in-view: true
+logging:
+  level:
+    it.discordcgm.monkeygarage : info
+    org.hibernate.orm.jdbc.bind : trace
+    org.springframework : info
+
+app:
+  # JWT Settings
+  jwtSecret: ThisIsTheSecretK3y!
+  jwtExpirationInSeconds: 36000
+  # Comma separated list of allowed origins
+  cors.allowedOrigins: *   # chiamate possono partire da qualsiasi indirizzo IP

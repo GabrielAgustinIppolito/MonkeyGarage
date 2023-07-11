@@ -1,0 +1,39 @@
+MonkeyGarage
+Programmazione di delle prenotazioni; per gestire una 
+prenotazione --> 
+	User-Cliente prenota il proprio posto auto
+	Stato prenotazione
+	data inizio prenotazione
+	data fine
+
+User -->
+	Veicolo associato
+	nome
+	mail
+	password
+	abilitato
+	ruoli --> Operatore, Cliente	
+
+Veicolo -->
+	targa
+	marca
+	modello
+	tipo
+
+Posti --> 
+	TIPO		CAPIENZA	PREZZO       PIANO 	SEZIONE
+	Auto		300		1500$        1-5	loli
+	Moto
+	Camper/Furgoni
+
+Prenotazione -->
+	user -- veicolo pk
+	inizio
+	fine
+	costo
+	pagato 1-0
+	servizio lavaggio
+
+
+						IMMAGINE?
+	
