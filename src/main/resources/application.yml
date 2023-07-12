@@ -5,7 +5,7 @@ spring:
   application:
     name: monkey_garage
   datasource:
-    url: jdbc:mysqldb://localhost:3306/monkeygarage?createDatabaseIfNotExist=true&autoReconnect=true&useSLL=false
+    url: jdbc:mysql://localhost:3306/monkeygarage?createDatabaseIfNotExist=true&autoReconnect=true&useSLL=false
     username: ${DB_USER}
     password: ${DB_PASS}
   jpa:
@@ -18,7 +18,7 @@ spring:
       open-in-view: true
 logging:
   level:
-    it.discordcgm.monkeygarage : info
+    it.discordcgm.monkeygarage : debug
     org.hibernate.orm.jdbc.bind : trace
     org.springframework : info
 
@@ -27,4 +27,5 @@ app:
   jwtSecret: ThisIsTheSecretK3y!
   jwtExpirationInSeconds: 36000
   # Comma separated list of allowed origins
-  cors.allowedOrigins: *   # chiamate possono partire da qualsiasi indirizzo IP
+  cors.allowedOrigins: \*
+  # chiamate possono partire da qualsiasi indirizzo IP
