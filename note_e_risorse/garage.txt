@@ -13,7 +13,7 @@ User -->
 	mail
 	password
 	abilitato
-	ruoli --> Operatore, Cliente	
+	ruoli --> Operatore, Cliente, Admin
 
 Veicolo -->
 	targa

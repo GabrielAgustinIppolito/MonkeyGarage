@@ -17,19 +17,18 @@ public class Veicolo {
     private String targa;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TipoVeicolo tipo;
+
     private String marca;
 
-    @Column(nullable = false)
-    private String tipo;
-
-    @Column(nullable = false)
     private String modello;
 
     @ManyToOne
     @JoinColumn(name="proprietario", nullable = false)
     private User proprietario;
 
-    public Veicolo(String targa, String marca, String tipo, String modello) {
+    public Veicolo(String targa, String marca, TipoVeicolo tipo, String modello) {
         this.targa = targa;
         this.marca = marca;
         this.tipo = tipo;

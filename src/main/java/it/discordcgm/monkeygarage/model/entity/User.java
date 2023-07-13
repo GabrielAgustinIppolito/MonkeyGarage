@@ -5,8 +5,6 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -37,6 +35,13 @@ public class User {
 
     @OneToMany(mappedBy="proprietario")
     private Set<Veicolo> veicolos;
+
+    @ManyToMany // Giusto a scopo di esercitazione
+    @JoinTable(name = "user_ruolo",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "ruolo_id", referencedColumnName = "id")}
+    )
+    private Set<Ruolo> ruoli;
 
     public User(String nome, String email, String password, boolean abilitato) {
         this.nome = nome;
