@@ -19,5 +19,5 @@ public interface CostoTipoVeicoloRepository extends JpaRepository<CostoTipoVeico
             "ctp.tipoVeicolo " +
             ") FROM CostoTipoVeicolo ctp " +
             "WHERE ctp.tipoVeicolo = :tipoVeicolo")
-    Optional<CostoTipoVeicoloResponse> getCostoByTipoVeicolo(@Param("tipoVeicolo") String tipoVeicolo);
+    Optional<CostoTipoVeicoloResponse> getCostoByTipoVeicolo(@Param("tipoVeicolo") TipoVeicolo tipoVeicolo);
 }

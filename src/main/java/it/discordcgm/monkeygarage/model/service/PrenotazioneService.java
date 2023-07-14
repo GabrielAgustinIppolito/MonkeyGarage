@@ -43,14 +43,16 @@ public class PrenotazioneService {
 
     }
 
-    public ResponseEntity<?> getCost(String tipoVeicolo) {
+    public ResponseEntity<?> getCost(String tV) {
+        String tipoVeicolo = tV.toUpperCase().trim();
 
         var s = Arrays.stream(TipoVeicolo.values()).anyMatch(
                 v -> v.toString().equals(tipoVeicolo));
         if(!s){
             return new ResponseEntity<>("Non esiste il tipo di veicolo", HttpStatus.BAD_REQUEST);
         }
-        Optional<CostoTipoVeicoloResponse> costo = costoTipoVeicoloRepository.getCostoByTipoVeicolo(tipoVeicolo);
+        Optional<CostoTipoVeicoloResponse> costo = costoTipoVeicoloRepository.
+                getCostoByTipoVeicolo(TipoVeicolo.valueOf(tipoVeicolo));
         if(costo.isEmpty())
             return new ResponseEntity<>("Non esiste un prezzo associato a questo tipo di veicolo", HttpStatus.BAD_REQUEST);
 
