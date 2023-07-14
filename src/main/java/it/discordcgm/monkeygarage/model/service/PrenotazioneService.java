@@ -3,6 +3,7 @@ package it.discordcgm.monkeygarage.model.service;
 import it.discordcgm.monkeygarage.model.entity.CostoTipoVeicolo;
 import it.discordcgm.monkeygarage.model.entity.TipoVeicolo;
 import it.discordcgm.monkeygarage.model.payload.request.CostoTipoVeicoloRequest;
+import it.discordcgm.monkeygarage.model.payload.response.CostoTipoVeicoloResponse;
 import it.discordcgm.monkeygarage.model.repository.CostoTipoVeicoloRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,4 +43,17 @@ public class PrenotazioneService {
 
     }
 
+    public ResponseEntity<?> getCost(String tipoVeicolo) {
+
+        var s = Arrays.stream(TipoVeicolo.values()).anyMatch(
+                v -> v.toString().equals(tipoVeicolo));
+        if(!s){
+            return new ResponseEntity<>("Non esiste il tipo di veicolo", HttpStatus.BAD_REQUEST);
+        }
+        Optional<CostoTipoVeicoloResponse> costo = costoTipoVeicoloRepository.getCostoByTipoVeicolo(tipoVeicolo);
+        if(costo.isEmpty())
+            return new ResponseEntity<>("Non esiste un prezzo associato a questo tipo di veicolo", HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(costo, HttpStatus.OK);
+    }
 }

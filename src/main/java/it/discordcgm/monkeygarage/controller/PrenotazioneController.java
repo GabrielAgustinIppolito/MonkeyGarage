@@ -4,10 +4,7 @@ import it.discordcgm.monkeygarage.model.payload.request.CostoTipoVeicoloRequest;
 import it.discordcgm.monkeygarage.model.service.PrenotazioneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("prenotazione")
@@ -19,6 +16,11 @@ public class PrenotazioneController {
     @PostMapping("addCost")
     public ResponseEntity<?> addCost(@RequestBody CostoTipoVeicoloRequest request){
         return prenotazioneService.addCost(request);
+    }
+
+    @GetMapping("getCost/{tipoVeicolo}")
+    public ResponseEntity<?> addCost(@PathVariable String tipoVeicolo){
+        return prenotazioneService.getCost(tipoVeicolo);
     }
 
 }
