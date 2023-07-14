@@ -3,6 +3,7 @@ package it.discordcgm.monkeygarage.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity

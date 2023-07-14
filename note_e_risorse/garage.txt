@@ -14,6 +14,7 @@ User -->
 	password
 	abilitato
 	ruoli --> Operatore, Cliente, Admin
+	immagine profile
 
 Veicolo -->
 	targa
@@ -34,6 +35,13 @@ Prenotazione -->
 	costo
 	pagato 1-0
 	servizio lavaggio
+
+
+        PRENOTAZIONE:
+        Per realizzare la prenotazione accederemo attraverso una get filtrando
+        primariamente per il tipo (posto auto/moto ecc), poi in base agli orari
+        selezionati di inizio e fine prenotazione presi come orari liberi dal db,
+        infine fare una post ritornando se è stato possibile farlo
 
 
 						IMMAGINE?

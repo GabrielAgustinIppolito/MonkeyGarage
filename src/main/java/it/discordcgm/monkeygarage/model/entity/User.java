@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -42,6 +43,12 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "ruolo_id", referencedColumnName = "id")}
     )
     private Set<Ruolo> ruoli;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Avatar> avatars;
+
+    @OneToMany(mappedBy = "client")
+    private List<Prenotazione> prenotaziones;
 
     public User(String nome, String email, String password, boolean abilitato) {
         this.nome = nome;
