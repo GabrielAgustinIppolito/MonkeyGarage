@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class User {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy="proprietario")
-    private Set<Veicolo> veicolos;
+    private Set<Veicolo> veicolos = new HashSet<>();
 
     @ManyToMany // Giusto a scopo di esercitazione
     @JoinTable(name = "user_ruolo",
@@ -55,6 +56,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.abilitato = abilitato;
+        this.ruoli = new HashSet<>();
     }
 
     @Override

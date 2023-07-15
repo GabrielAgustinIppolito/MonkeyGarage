@@ -20,13 +20,4 @@ public class UserService {
     }
 
 
-
-    public ResponseEntity<?> registrazione(RegistrazioneRequest request){
-        if(existsByEmail(request.getEmail()))
-            return new ResponseEntity<>("Email already in use", HttpStatus.BAD_REQUEST);
-        User u = userRepository.save(new User(request.getNome(), request.getEmail(), request.getPassword(), true));
-        return new ResponseEntity<>("nome:" + u.getNome(), HttpStatus.OK);
-    }
-
-
 }

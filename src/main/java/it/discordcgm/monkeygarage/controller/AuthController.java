@@ -1,7 +1,7 @@
 package it.discordcgm.monkeygarage.controller;
 
 import it.discordcgm.monkeygarage.model.payload.request.RegistrazioneRequest;
-import it.discordcgm.monkeygarage.model.service.UserService;
+import it.discordcgm.monkeygarage.model.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,23 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Validated
-@RequiredArgsConstructor
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("auth")
+@RequiredArgsConstructor
+@Validated
+public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authService;
 
-//    @PostMapping("registrazione")
-//    public ResponseEntity<?> registrazione(@RequestBody @Valid RegistrazioneRequest request){
-//        return userService.registrazione(request);
-//
-//    }
+    @PostMapping("registrazione")
+    public ResponseEntity<?> registrazione(@RequestBody @Valid RegistrazioneRequest request){
+        return authService.registrazione(request);
 
-
-
+    }
 
 }
-
-

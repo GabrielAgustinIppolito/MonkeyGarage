@@ -1,5 +1,6 @@
 package it.discordcgm.monkeygarage.model.payload.request;
 
+import it.discordcgm.monkeygarage.model.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -19,4 +20,9 @@ public class RegistrazioneRequest {
     @Email
     @NotBlank
     private String email;
+
+    public User toEntity(boolean abilitato){
+        return new User(this.getNome(), this.getEmail(), this.getPassword(), abilitato);
+    }
+
 }
