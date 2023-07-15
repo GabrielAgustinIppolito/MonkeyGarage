@@ -20,4 +20,9 @@ public class Ruolo {
         this.id = id;
         this.nome = nome.toUpperCase().trim();
     }
+
+
+    public Ruolo(String nome) {
+        this.nome = nome;
+    }
 }

@@ -23,7 +23,10 @@ public class UserController {
     @PostMapping("registrazione")
     public ResponseEntity<?> registrazione(@RequestBody @Valid RegistrazioneRequest request){
         return userService.registrazione(request);
+
     }
+
+
 
 
 }

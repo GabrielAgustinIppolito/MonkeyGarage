@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,5 +58,10 @@ public class PrenotazioneService {
             return new ResponseEntity<>("Non esiste un prezzo associato a questo tipo di veicolo", HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(costo, HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getAllCost() {
+        List<CostoTipoVeicoloResponse> c = costoTipoVeicoloRepository.getAll();
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 }

@@ -23,4 +23,9 @@ public class PrenotazioneController {
         return prenotazioneService.getCost(tipoVeicolo);
     }
 
+    @GetMapping("allCosts")
+    public ResponseEntity<?> getAllCost(){
+        return prenotazioneService.getAllCost();
+    }
+
 }
