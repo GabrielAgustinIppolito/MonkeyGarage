@@ -1,5 +1,6 @@
 package it.discordcgm.monkeygarage.controller;
 
+import it.discordcgm.monkeygarage.model.payload.request.AccessoRequest;
 import it.discordcgm.monkeygarage.model.payload.request.RegistrazioneRequest;
 import it.discordcgm.monkeygarage.model.service.AuthService;
 import jakarta.validation.Valid;
@@ -23,6 +24,12 @@ public class AuthController {
     @PostMapping("registrazione")
     public ResponseEntity<?> registrazione(@RequestBody @Valid RegistrazioneRequest request){
         return authService.registrazione(request);
+
+    }
+
+    @PostMapping("accesso")
+    public ResponseEntity<?> accesso (@RequestBody @Valid AccessoRequest request){
+        return authService.accesso(request);
 
     }
 

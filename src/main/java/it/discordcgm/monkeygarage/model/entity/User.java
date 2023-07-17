@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, length = 20)
-    private String nome;
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -52,7 +52,7 @@ public class User {
     private List<Prenotazione> prenotaziones;
 
     public User(String nome, String email, String password, boolean abilitato) {
-        this.nome = nome;
+        this.username = nome;
         this.email = email;
         this.password = password;
         this.abilitato = abilitato;

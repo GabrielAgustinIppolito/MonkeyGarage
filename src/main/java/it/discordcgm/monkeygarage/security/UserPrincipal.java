@@ -45,7 +45,7 @@ public class UserPrincipal implements UserDetails {
 
         return new UserPrincipal(
             user.getId(),
-            user.getNome(),
+            user.getUsername(),
             user.getEmail(),
             user.getPassword(),
             authorities,
@@ -56,7 +56,7 @@ public class UserPrincipal implements UserDetails {
     public User createUserFromUserPrincipal(UserPrincipal up) {
         User u = new User();
         u.setId(up.getId());
-        u.setNome(up.getUsername());
+        u.setUsername(up.getUsername());
         u.setEmail(up.getEmail());
         u.setRuoli(up.getAuthorities().stream().map(a -> new Ruolo(a.getAuthority())).collect(Collectors.toSet()));
 	    return u;

@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import it.discordcgm.monkeygarage.config.SetValuesFromApplicationYaml;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -21,12 +22,6 @@ import java.util.Map;
 @Slf4j
 public class JwtTokenProvider {
 
-	@Value("${app.jwtExpirationInSeconds}")
-	 private static long expirationInSeconds;
-
-	@Value("${app.jwtSecret")
-	private static String secretKey;
-
     public static String generateToken(Authentication authentication) {
     	
     	UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
@@ -40,7 +35,7 @@ public class JwtTokenProvider {
         final Instant now = Instant.now();
         builder
         	.withIssuedAt(Date.from(now)) // iat: jwt creation date
-        	.withExpiresAt(Date.from(now.plus(expirationInSeconds, ChronoUnit.SECONDS))); // exp: jwt expiration date
+        	.withExpiresAt(Date.from(now.plus(SetValuesFromApplicationYaml.JWT_EXPIRATION_IN_SECONDS, ChronoUnit.SECONDS))); // exp: jwt expiration date
 
         if (payloadClaims.isEmpty()) {
             log.warn("You are building a JWT without header claims");
@@ -48,14 +43,14 @@ public class JwtTokenProvider {
         for (Map.Entry<String, Object> entry : payloadClaims.entrySet()) {
             builder.withClaim(entry.getKey(), entry.getValue().toString());
         }
-        return builder.sign(Algorithm.HMAC512(secretKey));
+        return builder.sign(Algorithm.HMAC512(SetValuesFromApplicationYaml.JWT_SECRET));
     }
     
     
     public static DecodedJWT verifyJwt(String jwt) throws TokenExpiredException {
     	DecodedJWT decodedJwt = null;
     	try {
-    		decodedJwt = JWT.require(Algorithm.HMAC512(secretKey)).build().verify(jwt);
+    		decodedJwt = JWT.require(Algorithm.HMAC512(SetValuesFromApplicationYaml.JWT_SECRET)).build().verify(jwt);
     		return decodedJwt;
     	} catch (TokenExpiredException ex){
     		return null;    		
